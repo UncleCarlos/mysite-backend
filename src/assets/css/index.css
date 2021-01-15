@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --app-background: #181924;
+  --component-background: #2a2b36;
+  --text-color: rgba(255, 255, 255, 0.85);
+}
+
+@layer base {
+  .iconfont {
+    vertical-align: -0.15em;
+    @apply w-4 h-4 overflow-hidden fill-current;
+  }
+}
