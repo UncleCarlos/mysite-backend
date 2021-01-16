@@ -1,15 +1,15 @@
 <template>
-  <div class="flex h-screen bg-app">
+  <section class="flex h-screen bg-app">
     <AppSider />
-    <div class="flex flex-col flex-auto overflow-hidden duration-300 ease-linear transition-width ">
+    <section id="nprogress-node" class="flex flex-col flex-1 overflow-hidden">
       <AppHeader />
       <main class="flex-1 overflow-x-hidden overflow-y-auto text-primary">
-        <div class="container px-6 py-8 mx-auto ">
+        <div class="container px-6 py-8 mx-auto">
           <slot />
         </div>
       </main>
-    </div>
-  </div>
+    </section>
+  </section>
 </template>
 
 <script lang="ts">

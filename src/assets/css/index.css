@@ -6,6 +6,11 @@
   --app-background: #181924;
   --component-background: #2a2b36;
   --text-color: rgba(255, 255, 255, 0.85);
+
+  --border-split: rgba(255, 255, 255, 0.075);
+  --component-header-background: #282933;
+  --component-body-background: #24252f;
+  --component-footer-background: #282933;
 }
 
 @layer base {
@@ -13,4 +18,8 @@
     vertical-align: -0.15em;
     @apply w-4 h-4 overflow-hidden fill-current;
   }
+}
+
+#nprogress .spinner {
+  @apply top-16 right-3;
 }

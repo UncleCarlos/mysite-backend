@@ -1,7 +1,7 @@
 import { reactive, toRefs } from 'vue'
 
 const state = reactive({
-  isOpen: false,
+  visiable: false,
 })
 
 export function useSider() {

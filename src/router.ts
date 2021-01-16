@@ -1,13 +1,20 @@
-import { createRouter, createMemoryHistory } from 'vue-router'
-import Hei from '/@/components/Hei.vue'
+import { createRouter, createWebHistory } from 'vue-router'
+import Dashboard from '/@/views/Dashboard.vue'
+import Account from '/@/views/Account.vue'
 
 const router = createRouter({
-  history: createMemoryHistory(),
+  history: createWebHistory(),
   routes: [
+    { path: '/', redirect: '/dashboard' },
     {
-      path: '/',
-      name: 'Home',
-      component: Hei,
+      path: '/dashboard',
+      name: 'Dashboard',
+      component: Dashboard,
+    },
+    {
+      path: '/account',
+      name: 'Account',
+      component: Account,
     },
   ],
 })

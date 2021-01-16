@@ -1,12 +1,12 @@
 <template>
-  <div>new component</div>
+  <div>Dashboard</div>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from 'vue'
 
 export default defineComponent({
-  name: 'Hei',
+  name: 'Dashboard',
   components: {},
   props: {},
   setup(props) {
@@ -19,4 +19,3 @@ export default defineComponent({
 })
 </script>
 
-<style></style>

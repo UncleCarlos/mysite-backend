@@ -1,7 +1,7 @@
 <template>
-  <header class="flex items-center justify-between px-6 py-4 shadow-md bg-component h-14">
+  <header class="flex items-center justify-between px-6 py-4 shadow-app bg-component h-14">
     <div class="flex items-center">
-      <button @click="isOpen = true" class="text-gray-500 focus:outline-none lg:hidden">
+      <button @click="siderVisiable = true" class="text-gray-500 focus:outline-none lg:hidden">
         <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M4 6H20M4 12H20M4 18H11"
@@ -46,61 +46,25 @@
           />
         </svg>
       </button>
-
-      <div class="relative">
-        <button
-          @click="dropdownOpen = !dropdownOpen"
-          class="relative z-10 block w-8 h-8 overflow-hidden rounded-full shadow focus:outline-none"
-        >
-          <img
-            class="object-cover w-full h-full"
-            src="/@/assets/carlos-avatar.png"
-            alt="Your avatar"
-          />
-        </button>
-
-        <div
-          v-show="dropdownOpen"
-          @click="dropdownOpen = false"
-          class="fixed inset-0 z-10 w-full h-full"
-        ></div>
-
-        <div
-          v-show="dropdownOpen"
-          class="absolute right-0 z-20 w-48 py-2 mt-2 bg-white rounded-md shadow-xl"
-        >
-          <a
-            href="#"
-            class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white"
-            >Profile</a
-          >
-          <a
-            href="#"
-            class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white"
-            >Products</a
-          >
-          <router-link
-            to="/"
-            class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white"
-            >Log out</router-link
-          >
-        </div>
-      </div>
+      <Avatar />
     </div>
   </header>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs } from 'vue'
+import { computed, defineComponent, reactive, ref, toRefs, watchEffect } from 'vue'
+import Avatar from './AppHeaderAvatar.vue'
 import { useSider } from '/@/hooks/useSider'
 
 export default defineComponent({
   name: 'AppHeader',
-  components: {},
+  components: { Avatar },
   props: {},
   setup(props) {
-    const siderIsOpen = useSider().isOpen
-    const data = reactive({})
+    const siderVisiable = useSider().visiable
+    const data = reactive({
+      siderVisiable,
+    })
 
     return {
       ...toRefs(data),
