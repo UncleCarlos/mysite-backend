@@ -1,5 +1,5 @@
 <template>
-  <header class="flex items-center justify-between px-6 py-4 shadow-app bg-component h-14">
+  <header class="z-30 flex items-center justify-between px-6 py-4 shadow bg-component h-14">
     <div class="flex items-center">
       <button @click="siderVisiable = true" class="text-gray-500 focus:outline-none lg:hidden">
         <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

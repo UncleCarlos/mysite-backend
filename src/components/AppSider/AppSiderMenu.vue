@@ -31,9 +31,13 @@ export default defineComponent({
   setup(props) {
     const menuItems = computed(() => props.menuItems)
 
-    const activeClass = ref('bg-yellow-300 bg-opacity-25 text-gray-100 border-yellow-400')
+    // const activeClass = ref('bg-yellow-300 bg-opacity-25 text-gray-100 border-yellow-400')
+    // const inactiveClass = ref(
+    //   'border-transparent text-gray-500 hover:bg-yellow-100 hover:bg-opacity-25 hover:text-gray-100'
+    // )
+    const activeClass = ref('bg-yellow-600 text-gray-100 border-yellow-800')
     const inactiveClass = ref(
-      'border-transparent text-gray-500 hover:bg-yellow-100 hover:bg-opacity-25 hover:text-gray-100'
+      'border-transparent text-gray-500 hover:bg-yellow-300 hover:bg-opacity-25 hover:text-gray-100'
     )
     const siderVisiable = useSider().visiable
     const handleClickMenu = () => {

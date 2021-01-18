@@ -1,0 +1,21 @@
+@import './variables.scss';
+
+$--color-text-primary: $text-color;
+$--color-white: $component-background;
+
+$--card-border-color: $component-background; // $--border-color-lighter !default;
+$--table-row-hover-background-color: $item-hover-background; // $--background-color-base !default;
+// $--table-header-background-color: var(--component-body-background);
+
+@import 'element-plus/packages/theme-chalk/src/index.scss';
+
+.el-table {
+  &::before {
+    height: 0;
+  }
+
+  th.is-leaf,
+  td {
+    @apply border-b border-solid border-split;
+  }
+}

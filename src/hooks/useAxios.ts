@@ -1,11 +1,11 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse, CancelTokenSource } from 'axios'
-import qs from 'qs'
-import { Ref, ref } from 'vue'
+import { Ref, ref, toRaw } from 'vue'
 import Config from '/@/config'
 import nprogress from 'nprogress'
 import 'nprogress/nprogress.css'
+import qs from 'qs'
 
-nprogress.configure({parent: '#nprogress-node'})
+nprogress.configure({ parent: '#nprogress-node' })
 const axiosInstance = axios.create({
   baseURL: Config.API_BASE_URL,
   timeout: Config.API_TIMEOUT,
@@ -24,7 +24,7 @@ axiosInstance.interceptors.response.use((response: AxiosResponse) => {
   return response
 }, handleError)
 
-export function useAxios<T = any>(url: string, config?: AxiosRequestConfig) {
+export async function useAxios<T = any>(url: string, config?: AxiosRequestConfig) {
   nprogress.start()
   const response = ref<any>(null) as Ref<AxiosResponse<T> | undefined>
   const data = ref<any>(undefined) as Ref<T | undefined>
@@ -39,7 +39,7 @@ export function useAxios<T = any>(url: string, config?: AxiosRequestConfig) {
     nprogress.done()
   }
 
-  axiosInstance(url, { ...config, cancelToken: cancelToken.token })
+  await axiosInstance(url, { ...config, cancelToken: cancelToken.token })
     .then((res: AxiosResponse<T>) => {
       response.value = res
       data.value = res.data

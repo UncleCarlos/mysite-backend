@@ -1,74 +1,52 @@
 <template>
   <div>
-    User
-    <Card></Card>
     <Card>
       <template #header>头啊</template>
-      什么乱七八糟
-      <template #footer>脚啊</template>
+      <el-table :data="accountItems" :v-loading="isLoading">
+        <el-table-column prop="id" label="ID"> </el-table-column>
+        <el-table-column prop="username" label="用户名"> </el-table-column>
+        <el-table-column prop="isActive" label="状态">
+          <template #default="scope">
+            <el-tag size="medium" :type="scope.row.isActive ? 'success' : 'danger'">
+              {{ scope.row.isActive ? '正常' : '禁用' }}
+            </el-tag>
+          </template>
+        </el-table-column>
+      </el-table>
     </Card>
-    <el-card class="box-card">
-      <template #header>
-        <div class="clearfix">
-          <span>卡片名称</span>
-          <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
-        </div>
-      </template>
-      123
-    </el-card>
-    <el-table :data="tableData">
-      <el-table-column prop="date" label="日期" width="180"> </el-table-column>
-      <el-table-column prop="name" label="姓名" width="180"> </el-table-column>
-      <el-table-column prop="address" label="地址"> </el-table-column>
-    </el-table>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, toRefs } from 'vue'
+import qs from 'qs'
+import { defineComponent, onMounted, reactive, ref, Ref, toRaw, toRefs, watchEffect } from 'vue'
 import { useAxios } from '/@/hooks/useAxios'
+import { IAccount } from '/@/interface'
 
 export default defineComponent({
   name: 'User',
   components: {},
   props: {},
   setup(props) {
-    const accountItems = reactive([])
+    const accountItems: IAccount[] = reactive([])
     const fetchAccounts = async () => {
-      const result = await useAxios('/backend/user')
+      const { error, data } = await useAxios('backend/user')
+      // const { error, data } = await res
+      const items = data.value.data
+      // console.log(qs.parse(toRaw(data.value)))
+      // accountItems.splice(0, accountItems.length, stringify(data))
+      if (!error.value) accountItems.splice(0, accountItems.length, ...items)
+      console.log(accountItems)
     }
-    const tableData = reactive([
-      {
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄',
-      },
-      {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄',
-      },
-      {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄',
-      },
-      {
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄',
-      },
-    ])
+    const isLoading = ref(true)
     onMounted(async () => {
       fetchAccounts()
     })
-    const data = reactive({
-      tableData,
-    })
 
     return {
-      ...toRefs(data),
+      accountItems,
       fetchAccounts,
+      isLoading
     }
   },
 })

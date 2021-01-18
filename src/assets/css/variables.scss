@@ -1,0 +1,62 @@
+// 高宽
+$app-titlebar-height: 30px;
+$app-statusbar-height: 22px;
+$app-navmenu-width: 48px;
+$app-sider-header-height: 35px;
+$app-hub-header-height: 35px;
+$tree-node-height: 22px;
+$inkbar-width: 2px;
+$popper-menuitem-height: 35px;
+$console-header-height: 35px;
+$connection-header-height: 44px;
+
+// 颜色
+$app-background: #181924;
+$component-background: #24252f;
+$app-close-button-hover: #e81123;
+$app-close-button-active: #f1707a;
+
+$item-active-background: lighten($component-background, 8%);
+$item-hover-background: lighten($component-background, 5%);
+$shadow-color: darken($app-background, 5%);
+
+$text-color: rgba(255, 255, 255, 0.85);
+$text-color-highlight: #cccccc;
+$text-color-placeholder: darken($text-color, 10%);
+
+$color-primary: #3399cc;
+
+$border-color-base: lighten($component-background, 5%);
+$border-color-light: lighten($border-color-base, 5%);
+
+// 图标颜色
+$icon-reids-color: #e06c75;
+$icon-folder-color: #3399cc;
+$icon-settings-color: #e2c08d;
+$redis-list-color: #e5c07b;
+$redis-set-color: #61afef;
+$redis-zset-color: #e06c75;
+$redis-string-color: #98c379;
+$redis-hash-color: #c678dd;
+// 字体
+$font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
+  'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+  'Segoe UI Emoji', 'Segoe UI Symbol';
+$font-size-base: 16px;
+$font-size-extra-large: 1.25rem;
+$font-size-large: 1.125rem;
+$font-size: 1rem;
+$font-size-medium: 0.875rem;
+$font-size-small: 0.75rem;
+$font-size-extra-small: 0.625rem;
+
+// 间距
+$space-extra-large: 20px;
+$space-large: 16px;
+$space-medium: 12px;
+$space-small: 8px;
+$space-extra-small: 4px;
+
+// 其他
+$shadow-base: 0 2px 8px $shadow-color;
+// $ep-fonts-path: '/assets/ep-fonts';
