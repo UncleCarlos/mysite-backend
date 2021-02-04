@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
-import DefaultLayout from '/@/components/DefaultLayout.vue'
+import DefaultLayout from '@/components/DefaultLayout.vue'
 import { useRouter } from 'vue-router'
 
 export default defineComponent({

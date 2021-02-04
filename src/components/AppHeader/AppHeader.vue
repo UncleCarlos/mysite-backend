@@ -52,9 +52,9 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, ref, toRefs, watchEffect } from 'vue'
+import { defineComponent, reactive, toRefs } from 'vue'
 import Avatar from './AppHeaderAvatar.vue'
-import { useSider } from '/@/hooks/useSider'
+import { useSider } from '@/hooks/useSider'
 
 export default defineComponent({
   name: 'AppHeader',

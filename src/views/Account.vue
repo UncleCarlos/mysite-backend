@@ -20,8 +20,8 @@
 <script lang="ts">
 import qs from 'qs'
 import { defineComponent, onMounted, reactive, ref, Ref, toRaw, toRefs, watchEffect } from 'vue'
-import { useAxios } from '/@/hooks/useAxios'
-import { IAccount } from '/@/interface'
+import { useAxios } from '@/hooks/useAxios'
+import { IAccount } from '@/interface'
 
 export default defineComponent({
   name: 'User',
