@@ -1,0 +1,10 @@
+:root {
+  --app-background: #181924;
+  --component-background: #2a2b36;
+  --text-color: rgba(255, 255, 255, 0.85);
+
+  --border-split: rgba(255, 255, 255, 0.075);
+  --component-header-background: #282933;
+  --component-body-background: #24252f;
+  --component-footer-background: #282933;
+}

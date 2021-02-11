@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Card>
+    <el-card>
       <template #header>头啊</template>
       <el-table :data="accountItems" :v-loading="isLoading">
         <el-table-column prop="id" label="ID"> </el-table-column>
@@ -13,7 +13,7 @@
           </template>
         </el-table-column>
       </el-table>
-    </Card>
+    </el-card>
   </div>
 </template>
 

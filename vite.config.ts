@@ -4,8 +4,10 @@ import { resolve } from 'path'
 
 export default defineConfig({
   plugins: [vue()],
-  alias: {
-    '@': resolve(__dirname, 'src'),
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, 'src'),
+    },
   },
   optimizeDeps: {
     include: ['dayjs/locale/zh-cn', 'dayjs/plugin/relativeTime'],

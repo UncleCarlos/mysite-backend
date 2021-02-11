@@ -3,7 +3,7 @@
     <AppSider />
     <section  class="flex flex-col flex-1 overflow-hidden">
       <AppHeader />
-      <main id="nprogress-node" class="z-20 flex-1 overflow-x-hidden overflow-y-auto text-primary">
+      <main class="z-20 flex-1 overflow-x-hidden overflow-y-auto text-primary">
         <div class="container px-6 py-8 mx-auto">
           <CustomRouterView/>
         </div>

@@ -4,7 +4,7 @@
       @click="dropdownVisiable = !dropdownVisiable"
       class="relative z-10 block w-8 h-8 overflow-hidden rounded-full shadow focus:outline-none"
     >
-      <img class="object-cover w-full h-full transition-transform hover:scale-110 transform-gpu" :src="carlosAvatar" alt="Your avatar" />
+      <img class="object-cover w-full h-full transition-transform hover:scale-110 transform-gpu" :src="accountAvatar" alt="Your avatar" />
     </button>
 
     <div
@@ -34,7 +34,6 @@
 
 <script lang="ts">
 import { defineComponent, reactive, ref, toRefs } from 'vue'
-import CarlosAvatar from '@/assets/carlos-avatar.png'
 
 export default defineComponent({
   name: 'AppHeaderAvatar',
@@ -42,10 +41,10 @@ export default defineComponent({
   props: {},
   setup(props) {
     const dropdownVisiable = ref(false)
-    const carlosAvatar = CarlosAvatar
+    const accountAvatar = '/images/carlos-avatar.png'
     const data = reactive({
       dropdownVisiable,
-      carlosAvatar
+      accountAvatar
     })
 
     return {

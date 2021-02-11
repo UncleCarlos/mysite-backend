@@ -13,18 +13,17 @@
       class="fixed inset-y-0 left-0 z-50 w-64 overflow-y-auto transition duration-300 transform shadow bg-component lg:translate-x-0 lg:static lg:inset-0"
     >
       <AppSiderLogo />
-      <AppSiderMenu :menuItems="routes" />
+      <AppSiderMenu />
     </div>
   </section>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, ref, toRefs, watchEffect } from 'vue'
+import { defineComponent } from 'vue'
 import AppSiderLogo from './AppSiderLogo.vue'
 import AppSiderMenu from './AppSiderMenu.vue'
 
 import { useSider } from '@/hooks/useSider'
-import { useRouter } from 'vue-router'
 
 export default defineComponent({
   name: '',
@@ -32,10 +31,8 @@ export default defineComponent({
   props: {},
   setup(props) {
     const siderVisiable = useSider().visiable
-    const routes = reactive(useRouter().options.routes)
     return {
       siderVisiable,
-      routes,
     }
   },
 })

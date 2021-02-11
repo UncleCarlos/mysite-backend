@@ -1,21 +1,8 @@
-:root {
-  --app-background: #181924;
-  --component-background: #2a2b36;
-  --text-color: rgba(255, 255, 255, 0.85);
+@import 'tailwindcss/base';
+@import './base.css';
 
-  --border-split: rgba(255, 255, 255, 0.075);
-  --component-header-background: #282933;
-  --component-body-background: #24252f;
-  --component-footer-background: #282933;
-}
+@import 'tailwindcss/components';
+@import './components.css';
+@import 'nprogress/nprogress.css';
 
-.iconfont {
-  vertical-align: -0.15em;
-  @apply w-4 h-4 overflow-hidden fill-current;
-}
-
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
+@import 'tailwindcss/utilities';

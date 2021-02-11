@@ -1,13 +1,13 @@
 <template>
   <div>
-    <Card>
+    <el-card>
       <template #header>头啊</template>
       <el-table :data="items" :v-loading="isLoading">
         <el-table-column prop="name" label="名称">
           <template #default="scope">
             {{ scope.row.name }}
             <el-link :href="scope.row.web" type="info" :underline="false" target="_blank">
-              <Icon name="link" />
+              <CIconPark icon="link" />
             </el-link>
           </template>
         </el-table-column>
@@ -15,23 +15,23 @@
           <template #default="scope">
             {{ scope.row.rss }}
             <el-link :href="scope.row.rss" type="info" :underline="false" target="_blank">
-              <Icon name="link" />
+              <CIconPark icon="link" />
             </el-link>
           </template>
         </el-table-column>
         <el-table-column width="70px">
           <template #default="scope">
             <el-button type="text" @click="handleEdit(scope.row.id)">
-              <Icon name="edit-square" />
+              <CIconPark icon="edit-square" />
             </el-button>
             <el-button type="text">
-              <Icon name="delete" />
+              <CIconPark icon="delete" />
             </el-button>
           </template>
         </el-table-column>
         <!-- <el-table-column prop="id" label="ID"> </el-table-column> -->
       </el-table>
-    </Card>
+    </el-card>
     <el-dialog title="编辑" v-model="dialogEditVisiable" destroy-on-close append-to-body>
       <DialogEdit :edit-id="editId" />
     </el-dialog>
@@ -44,10 +44,9 @@ import { useAxios } from '@/hooks/useAxios'
 import { ISource } from '@/types/interface'
 
 import DialogEdit from './Edit.vue'
-import Icon from '@/components/Common/Icon.vue'
 export default defineComponent({
   name: 'SourceList',
-  components: { DialogEdit, Icon },
+  components: { DialogEdit },
   props: {},
   setup(props) {
     const isLoading = ref(true)

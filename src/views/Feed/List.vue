@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Card>
+    <el-card>
       <template #header>头啊</template>
       <el-table :data="feedItems" :v-loading="isLoading">
         <el-table-column prop="title" label="Feed">
@@ -32,7 +32,7 @@
         </el-table-column>
         <!-- <el-table-column prop="id" label="ID"> </el-table-column> -->
       </el-table>
-    </Card>
+    </el-card>
   </div>
 </template>
 

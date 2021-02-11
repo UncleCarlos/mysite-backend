@@ -46,28 +46,25 @@
           />
         </svg>
       </button>
-      <Avatar />
+      <AppHeaderAvatar />
     </div>
   </header>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs } from 'vue'
-import Avatar from './AppHeaderAvatar.vue'
+import { defineComponent } from 'vue'
+import AppHeaderAvatar from './AppHeaderAvatar.vue'
 import { useSider } from '@/hooks/useSider'
 
 export default defineComponent({
   name: 'AppHeader',
-  components: { Avatar },
+  components: { AppHeaderAvatar },
   props: {},
   setup(props) {
     const siderVisiable = useSider().visiable
-    const data = reactive({
-      siderVisiable,
-    })
 
     return {
-      ...toRefs(data),
+      siderVisiable,
     }
   },
 })
