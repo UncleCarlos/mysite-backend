@@ -1,15 +1,19 @@
 <template>
-  <section class="flex h-screen bg-app">
-    <AppSider />
-    <section  class="flex flex-col flex-1 overflow-hidden">
-      <AppHeader />
-      <main class="z-20 flex-1 overflow-x-hidden overflow-y-auto text-primary">
-        <div class="container px-6 py-8 mx-auto">
-          <CustomRouterView/>
-        </div>
-      </main>
+  <CScrollBar>
+    <section class="w-screen h-screen max-h-screen min-h-screen">
+      <section class="flex w-full h-auto min-h-screen bg-app">
+        <AppSider />
+        <section class="flex flex-col flex-1">
+          <AppHeader />
+          <section class="flex-1">
+            <div class="container px-6 py-8 mx-auto">
+              <CustomRouterView />
+            </div>
+          </section>
+        </section>
+      </section>
     </section>
-  </section>
+  </CScrollBar>
 </template>
 
 <script lang="ts">

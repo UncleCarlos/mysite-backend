@@ -14,31 +14,50 @@
               </div>
               <div class="flex flex-col justify-between">
                 <span>{{ scope.row.title }}</span>
-                <span>{{ $dayjs(scope.row.pubDate).locale('zh-cn').fromNow() }}</span>
+                <span>{{ scope.row.date }}</span>
               </div>
             </div>
           </template>
         </el-table-column>
         <el-table-column prop="source" label="源" width="100px">
           <template #default="scope">
-            <a :href="scope.row.source.web" target="_blank">{{ scope.row.source.name }}</a>
+            {{
+              scope.row.source.subName
+                ? `${scope.row.source.subName}@${scope.row.source.name}`
+                : scope.row.source.name
+            }}
+            <el-link :href="scope.row.source.web" type="info" :underline="false" target="_blank">
+              <CIconPark icon="link-one" />
+            </el-link>
           </template>
         </el-table-column>
-        <el-table-column width="100px">
+        <el-table-column width="70px">
           <template #default="scope">
-            <button>编辑</button>
-            <button>删除</button>
+            <el-button type="text" @click="handleEdit(scope.row.id)">
+              <CIconPark icon="editor" size="1rem" />
+            </el-button>
+            <el-button type="text">
+              <CIconPark icon="delete" size="1rem" />
+            </el-button>
           </template>
         </el-table-column>
         <!-- <el-table-column prop="id" label="ID"> </el-table-column> -->
       </el-table>
+      <div class="mt-4">
+        <el-pagination
+          class="flex py-2 mx-auto"
+          background
+          layout="total,'->', sizes, prev, pager, next, jumper"
+          :total="1000"
+        />
+      </div>
     </el-card>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, ref } from 'vue'
-import { useAxios } from '@/hooks/useAxios'
+import { defineComponent, getCurrentInstance, onMounted, reactive, ref } from 'vue'
+import { useAxios, useNotify, useDayjs } from '@/hooks'
 import { IFeed } from '@/types/interface'
 
 export default defineComponent({
@@ -48,6 +67,9 @@ export default defineComponent({
   setup(props) {
     const isLoading = ref(true)
     const feedItems = reactive<IFeed[]>([])
+    const { formatRelativeIn3Days } = useDayjs()
+    const { notifyError } = useNotify()
+
     const fetchFeed = async () => {
       isLoading.value = true
       const { error, data, finished } = await useAxios('feeders')
@@ -55,9 +77,15 @@ export default defineComponent({
       // const dataMeta = data.value.meta
       if (!error.value) {
         isLoading.value = !finished.value
+        data.value.data.forEach((e: IFeed) => {
+          e.date = formatRelativeIn3Days(e.pubDate)
+        })
         feedItems.splice(0, feedItems.length, ...data.value.data)
+      } else {
+        notifyError(error.value)
       }
     }
+
     onMounted(() => {
       fetchFeed()
     })

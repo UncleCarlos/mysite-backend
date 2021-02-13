@@ -1,5 +1,4 @@
 export interface IFeed {
-  date: string
   id: string
   title: string
   link: string
@@ -9,11 +8,14 @@ export interface IFeed {
   thumbnail: string
   author: string
   source: any
+
+  date?: string
 }
 
 export interface ISource {
   id: string
   name: string
+  subName?: string
   web: string
   rss: string
   icon?: string

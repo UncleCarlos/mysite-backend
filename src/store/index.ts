@@ -1,10 +1,20 @@
 import { createLogger, createStore } from 'vuex'
 
 const store = createStore({
-  state: {},
+  state: {
+    dialogNotifyDetailVisiable: false,
+    dialogNotifyDetailContent: null,
+  },
   getters: {},
   actions: {},
-  mutations: {},
+  mutations: {
+    toggleDialogNotifyDetailVisiable(state, value) {
+      state.dialogNotifyDetailVisiable = value
+    },
+    updateDialogNotifyDetailContent(state, value) {
+      state.dialogNotifyDetailContent = value
+    },
+  },
   modules: {},
   plugins: import.meta.env.DEV ? [createLogger()] : [],
 })

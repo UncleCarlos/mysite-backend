@@ -33,31 +33,31 @@ const router = createRouter({
           ],
         },
         {
-          path: '/feed/',
-          redirect: '/feed/list',
+          path: '/feed',
+          redirect: '/feed/',
           name: 'Feed',
           meta: { label: 'Feed' },
           component: () => import('@/components/CustomRouterView.vue'),
           children: [
             {
-              path: '/feed/list',
+              path: '/feed/',
               name: 'FeedList',
-              component: () => import('@/views/Feed/List.vue'),
+              component: () => import('@/views/Feed/FeedList.vue'),
               meta: { label: 'Feed' },
             },
           ],
         },
         {
           path: '/source',
-          redirect: '/source/list',
+          redirect: '/source/',
           name: 'Source',
           meta: { label: 'Source' },
           component: () => import('@/components/CustomRouterView.vue'),
           children: [
             {
-              path: '/source/list',
+              path: '/source',
               name: 'SourceList',
-              component: () => import('@/views/Source/List.vue'),
+              component: () => import('@/views/Source/SourceList.vue'),
               meta: { label: 'Source' },
             },
           ],

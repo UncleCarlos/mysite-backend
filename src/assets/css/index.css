@@ -4,5 +4,6 @@
 @import 'tailwindcss/components';
 @import './components.css';
 @import 'nprogress/nprogress.css';
+@import 'vue-toastification/dist/index.css';
 
 @import 'tailwindcss/utilities';

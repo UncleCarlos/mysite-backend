@@ -8,7 +8,8 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vuedx-typecheck . && vite build"
+    "build": "vuedx-typecheck . && vite build",
+    "clean": "rm -rf node_modules/.vite"
   },
   "dependencies": {
     "@icon-park/vue-next": "^1.2.7",
@@ -16,14 +17,20 @@
     "dayjs": "^1.10.4",
     "element-plus": "^1.0.1-beta.27",
     "nprogress": "^0.2.0",
+    "overlayscrollbars": "^1.13.1",
+    "prismjs": "^1.23.0",
     "qs": "^6.9.6",
     "vue": "^3.0.5",
+    "vue-prism-component": "^2.0.0",
     "vue-router": "^4.0.3",
+    "vue-toastification": "^2.0.0-rc.1",
     "vuex": "^4.0.0"
   },
   "devDependencies": {
-    "@types/node": "^14.14.25",
+    "@types/node": "^14.14.27",
     "@types/nprogress": "^0.2.0",
+    "@types/overlayscrollbars": "^1.12.0",
+    "@types/prismjs": "^1.16.2",
     "@types/qs": "^6.9.5",
     "@typescript-eslint/eslint-plugin": "^4.15.0",
     "@vitejs/plugin-vue": "^1.1.4",
@@ -31,7 +38,7 @@
     "@vuedx/typecheck": "^0.4.1",
     "@vuedx/typescript-plugin-vue": "^0.4.1",
     "autoprefixer": "^10.2.4",
-    "eslint": "^7.19.0",
+    "eslint": "^7.20.0",
     "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^7.5.0",
@@ -44,6 +51,6 @@
     "stylelint-config-recommended": "^3.0.0",
     "tailwindcss": "^2.0.3",
     "typescript": "^4.1.5",
-    "vite": "^2.0.0-beta.68"
+    "vite": "^2.0.0-beta.69"
   }
 }

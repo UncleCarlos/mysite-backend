@@ -20,14 +20,16 @@ $item-active-background: lighten($component-background, 8%);
 $item-hover-background: lighten($component-background, 5%);
 $shadow-color: darken($app-background, 5%);
 
-$text-color: rgba(255, 255, 255, 0.85);
-$text-color-highlight: #cccccc;
-$text-color-placeholder: darken($text-color, 10%);
+$text-color-primary: #b1b7c1;
+$text-color-regular: darken($text-color-primary, 10%);
+$text-color-highlight: lightn($text-color-primary, 10%);
+$text-color-placeholder: darken($text-color-regular, 10%);
 
-$color-primary: #3399cc;
+$color-primary: #eeb436;
 
-$border-color-base: lighten($component-background, 5%);
-$border-color-light: lighten($border-color-base, 5%);
+
+$border-color-base: lighten($component-background, 10%);
+$border-color-light: lighten($border-color-base, 10%);
 
 // 图标颜色
 $icon-reids-color: #e06c75;

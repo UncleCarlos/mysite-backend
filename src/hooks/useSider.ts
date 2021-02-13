@@ -1,11 +1,11 @@
-import { reactive, toRefs } from 'vue'
+import { ref } from 'vue'
 
-const state = reactive({
+const state = ref({
   visiable: false,
 })
 
 export function useSider() {
   return {
-    ...toRefs(state),
+    state,
   }
 }
