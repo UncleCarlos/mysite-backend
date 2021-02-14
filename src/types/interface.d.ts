@@ -26,3 +26,8 @@ export interface IAccount {
   username: string
   isActive: boolean
 }
+
+export interface IQueryOptions {
+  page?: number
+  size?: number
+}

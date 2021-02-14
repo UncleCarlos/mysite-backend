@@ -1,11 +1,9 @@
 import { ref } from 'vue'
 
-const state = ref({
-  visiable: false,
-})
+const visiable = ref(false)
 
 export function useSider() {
   return {
-    state,
+    visiable,
   }
 }

@@ -2,35 +2,40 @@
   <div>
     <el-card>
       <template #header>头啊</template>
-      <el-table :data="feedItems" :v-loading="isLoading">
+      <el-table :data="feedItems" :v-loading="isLoading" row-key="id" :default-sort="metaData.sort">
         <el-table-column prop="title" label="Feed">
           <template #default="scope">
             <div class="flex flex-row">
-              <div class="mr-2">
-                <img
-                  class="inline-block object-cover object-center w-40 h-16 max-w-xs border rounded border-split max-h-16"
+              <div class="mr-2" style="height: 90px; width: 160px">
+                <el-image
+                  class="w-full h-full border rounded border-split"
                   :src="scope.row.thumbnail"
+                  fit="cover"
                 />
               </div>
-              <div class="flex flex-col justify-between">
-                <span>{{ scope.row.title }}</span>
-                <span>{{ scope.row.date }}</span>
+              <div class="flex flex-col justify-around">
+                <span class="text-sm">{{ scope.row.title }}</span>
+                <span>
+                  {{
+                    scope.row.source.subName
+                      ? `${scope.row.source.subName}@${scope.row.source.name}`
+                      : scope.row.source.name
+                  }}
+                  <el-link
+                    :href="scope.row.source.web"
+                    type="info"
+                    :underline="false"
+                    target="_blank"
+                  >
+                    <CIconPark icon="link-one" />
+                  </el-link>
+                  {{ scope.row.author }}
+                </span>
               </div>
             </div>
           </template>
         </el-table-column>
-        <el-table-column prop="source" label="源" width="100px">
-          <template #default="scope">
-            {{
-              scope.row.source.subName
-                ? `${scope.row.source.subName}@${scope.row.source.name}`
-                : scope.row.source.name
-            }}
-            <el-link :href="scope.row.source.web" type="info" :underline="false" target="_blank">
-              <CIconPark icon="link-one" />
-            </el-link>
-          </template>
-        </el-table-column>
+        <el-table-column prop="date" label="时间" width="200px"></el-table-column>
         <el-table-column width="70px">
           <template #default="scope">
             <el-button type="text" @click="handleEdit(scope.row.id)">
@@ -45,10 +50,12 @@
       </el-table>
       <div class="mt-4">
         <el-pagination
-          class="flex py-2 mx-auto"
           background
-          layout="total,'->', sizes, prev, pager, next, jumper"
-          :total="1000"
+          layout="total,'->' , sizes, prev, pager, next, jumper"
+          :total="metaData.total"
+          :pager-count="5"
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
         />
       </div>
     </el-card>
@@ -56,9 +63,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, getCurrentInstance, onMounted, reactive, ref } from 'vue'
+import { defineComponent, onMounted, reactive, ref, watch } from 'vue'
 import { useAxios, useNotify, useDayjs } from '@/hooks'
-import { IFeed } from '@/types/interface'
+import { IFeed, IQueryOptions } from '@/types/interface'
 
 export default defineComponent({
   name: 'FeedList',
@@ -70,28 +77,48 @@ export default defineComponent({
     const { formatRelativeIn3Days } = useDayjs()
     const { notifyError } = useNotify()
 
+    const queryOptions = ref<IQueryOptions>({})
+    const metaData = ref({
+      total: 0,
+      pageCount: 0,
+      page: queryOptions.value.page,
+      size: queryOptions.value.size,
+    })
+    watch(
+      () => queryOptions,
+      () => fetchFeed(),
+      { deep: true }
+    )
     const fetchFeed = async () => {
       isLoading.value = true
-      const { error, data, finished } = await useAxios('feeders')
-      // const dataItems = data.value.data
-      // const dataMeta = data.value.meta
+      const { error, data, finished } = await useAxios('feeders', { params: queryOptions.value })
       if (!error.value) {
         isLoading.value = !finished.value
         data.value.data.forEach((e: IFeed) => {
           e.date = formatRelativeIn3Days(e.pubDate)
         })
         feedItems.splice(0, feedItems.length, ...data.value.data)
+        metaData.value = data.value.meta
       } else {
         notifyError(error.value)
       }
     }
-
+    const handleSizeChange = (size: number) => {
+      queryOptions.value.page = undefined
+      queryOptions.value.size = size
+    }
+    const handleCurrentChange = (page: number) => {
+      queryOptions.value.page = page
+    }
     onMounted(() => {
       fetchFeed()
     })
     return {
       isLoading,
       feedItems,
+      metaData,
+      handleSizeChange,
+      handleCurrentChange,
     }
   },
 })

@@ -20,8 +20,12 @@ import {
   ElTableColumn,
   ElTag,
   ElPagination,
+  ElLoading,
+  ElImage,
 } from 'element-plus'
 const GlobalComponentsElementPlus = [
+  ElImage,
+  ElLoading,
   ElButton,
   ElCard,
   ElDialog,

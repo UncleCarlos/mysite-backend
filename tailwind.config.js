@@ -13,6 +13,9 @@ module.exports = {
       textColor: {
         primary: 'var(--text-color)',
       },
+      maxWidth: {
+        40: '10rem',
+      },
       backgroundColor: {
         app: 'var(--app-background)',
         component: 'var(--component-background)',

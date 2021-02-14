@@ -54,7 +54,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import AppHeaderAvatar from './AppHeaderAvatar.vue'
-import { useSider } from '@/hooks/useSider'
+import { useSider } from '@/hooks'
 
 export default defineComponent({
   name: 'AppHeader',

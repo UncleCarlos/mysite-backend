@@ -6,10 +6,13 @@ export const useDayjs = () => {
   dayjs.locale('zh-cn')
   dayjs.extend(relativeTime)
 
-  const formatRelativeIn3Days = (date: string | number | dayjs.Dayjs | Date | undefined) => {
+  const formatRelativeIn3Days = (
+    date: string | number | dayjs.Dayjs | Date | undefined,
+    pattern?: string | undefined
+  ) => {
     if (!date) return
     if (dayjs(date).isAfter(dayjs().subtract(3, 'day'))) return dayjs(date).fromNow()
-    else return formatDate(date)
+    else return formatDate(date, pattern)
   }
 
   const formatDate = (
