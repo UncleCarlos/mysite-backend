@@ -1,0 +1,136 @@
+.app-navmenu.p-menu {
+  background: none;
+  border: none;
+  width: 14rem;
+
+  & .p-menu-separator {
+    margin: 1rem 1.25rem 0 0;
+  }
+
+  & .p-submenu-header {
+    color: var(--text-160);
+    padding: 0.75rem 0;
+    font-size: 0.875rem;
+    font-weight: normal;
+    background: none;
+  }
+
+  & .p-menuitem-link {
+    color: var(--text-130);
+    padding: 0;
+    height: 3rem;
+    padding-left: 1.25rem;
+    position: relative;
+    display: flex;
+    z-index: 0;
+    margin-bottom: 0.25rem;
+    border-top-left-radius: 9999px;
+    border-bottom-left-radius: 9999px;
+
+    &:focus {
+      box-shadow: none;
+    }
+    & .p-menuitem-text {
+      color: var(--text-150);
+    }
+
+    & .p-menuitem-icon {
+      color: var(--text-150);
+      margin-right: 0.75rem;
+    }
+    & .p-submenu-icon {
+      color: var(--text-150);
+    }
+    &:not(.p-disabled):hover {
+      background: none;
+
+      & .p-menuitem-text {
+        color: var(--text-150);
+      }
+      & .p-menuitem-icon {
+        color: var(--text-150);
+      }
+      & .p-submenu-icon {
+        color: var(--text-150);
+      }
+    }
+  }
+
+  & > ul > li.is-actived .p-menuitem-link,
+  & > ul > li.is-actived .p-menuitem-link:hover {
+    background-color: var(--bg-20);
+
+    & .p-menuitem-text {
+      color: var(--text-130);
+    }
+    & .p-menuitem-icon {
+      color: var(--text-130);
+    }
+    & .p-submenu-text {
+      color: var(--text-130);
+    }
+  }
+
+  & > ul > li.is-actived {
+    position: relative;
+    stroke: var(--bg-20);
+    fill: var(--bg-20);
+    color: var(--bg-20);
+
+    &:before {
+      margin-top: -32px;
+      /* transform: rotate(180deg); */
+    }
+    &:after {
+      margin-top: 3rem;
+      transform: rotate(-90deg);
+    }
+    &:before,
+    &:after {
+      content: '';
+      z-index: 10;
+      width: 2rem;
+      height: 2rem;
+      /* background-size: 100%;
+      background-image: url('cornor.svg'); */
+      /* margin-right: -1.25rem; */
+      position: absolute;
+      top: 0;
+      right: 0;
+      mask: url('../../app-navmenu-actived-cornor.svg');
+      background-color: var(--bg-20);
+    }
+  }
+  & > ul > li.is-actived .p-menuitem-link:hover {
+    background-color: var(--bg-20);
+  }
+  & > ul > li:not(.is-actived) > .p-menuitem-link:not(.p-disabled) .p-menuitem-text:before {
+    content: '';
+    z-index: -1;
+    width: 14rem;
+    border-top-left-radius: 9999px;
+    border-bottom-left-radius: 9999px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow,
+      transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+    transition-duration: 0.1s;
+  }
+  & > ul > li.is-actived > .p-menuitem-link .p-menuitem-text:before {
+    content: '';
+    z-index: -1;
+    height: 100%;
+    /* margin-right: -1.25rem; */
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 3rem;
+    background-color: var(--bg-20);
+  }
+  & > ul > li:not(.is-actived) > .p-menuitem-link:hover:not(.p-disabled) .p-menuitem-text:before {
+    background-color: var(--bg-40);
+  }
+}

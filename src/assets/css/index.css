@@ -2,6 +2,7 @@
 @import './base.css';
 
 @import 'tailwindcss/components';
+@import './yoho/index.css';
 @import './components.css';
 @import 'nprogress/nprogress.css';
 @import 'vue-toastification/dist/index.css';

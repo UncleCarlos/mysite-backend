@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-form
+    <!-- <el-form
       :model="formItem"
       label-suffix=":"
       label-position="right"
@@ -16,7 +16,7 @@
         ><el-button type="primary">保存</el-button
         ><el-button @click="handleClose">取消</el-button></el-form-item
       >
-    </el-form>
+    </el-form> -->
   </div>
 </template>
 

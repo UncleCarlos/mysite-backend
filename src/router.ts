@@ -6,7 +6,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'Home',
-      component: () => import('@/components/DefaultLayout.vue'),
+      component: () => import('@/components/LayoutYoHo/LayoutYoHo.vue'),
       redirect: '/dashboard',
       children: [
         {
@@ -18,15 +18,13 @@ const router = createRouter({
           },
         },
         {
-          path: '/collector/',
-          redirect: '/collector/list',
-          name: 'Collector',
+          path: '/collector',
           meta: { label: 'Collector' },
           component: () => import('@/components/CustomRouterView.vue'),
           children: [
             {
-              path: '/collector/list',
-              name: 'CollectorList',
+              path: '/collector',
+              name: 'Collector',
               component: () => import('@/views/Collector/List.vue'),
               meta: { label: 'Collector' },
             },
@@ -34,14 +32,12 @@ const router = createRouter({
         },
         {
           path: '/feed',
-          redirect: '/feed/',
-          name: 'Feed',
           meta: { label: 'Feed' },
           component: () => import('@/components/CustomRouterView.vue'),
           children: [
             {
-              path: '/feed/',
-              name: 'FeedList',
+              path: '/feed',
+              name: 'Feed',
               component: () => import('@/views/Feed/FeedList.vue'),
               meta: { label: 'Feed' },
             },
@@ -49,27 +45,25 @@ const router = createRouter({
         },
         {
           path: '/source',
-          redirect: '/source/',
-          name: 'Source',
           meta: { label: 'Source' },
           component: () => import('@/components/CustomRouterView.vue'),
           children: [
             {
               path: '/source',
-              name: 'SourceList',
+              name: 'Source',
               component: () => import('@/views/Source/SourceList.vue'),
               meta: { label: 'Source' },
             },
           ],
         },
-        {
-          path: '/account',
-          name: 'Account',
-          component: () => import('@/views/Account.vue'),
-          meta: {
-            label: '用户',
-          },
-        },
+        // {
+        //   path: '/account',
+        //   name: 'Account',
+        //   component: () => import('@/views/Account.vue'),
+        //   meta: {
+        //     label: '用户',
+        //   },
+        // },
       ],
     },
   ],

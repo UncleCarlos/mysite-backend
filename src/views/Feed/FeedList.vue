@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <el-card>
+  <div>Feed
+    <!-- <el-card>
       <template #header>头啊</template>
       <el-table :data="feedItems" :v-loading="isLoading" row-key="id" :default-sort="metaData.sort">
         <el-table-column prop="title" label="Feed">
@@ -46,7 +46,6 @@
             </el-button>
           </template>
         </el-table-column>
-        <!-- <el-table-column prop="id" label="ID"> </el-table-column> -->
       </el-table>
       <div class="mt-4">
         <el-pagination
@@ -58,7 +57,7 @@
           @current-change="handleCurrentChange"
         />
       </div>
-    </el-card>
+    </el-card> -->
   </div>
 </template>
 

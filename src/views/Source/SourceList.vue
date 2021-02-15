@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <el-card shadow="never">
+  <div>Source
+    <!-- <el-card shadow="never">
       <template #header>头啊</template>
       <el-table :data="items" :v-loading="isLoading">
         <el-table-column prop="name" label="名称">
@@ -47,7 +47,7 @@
       :close-on-click-modal="false"
     >
       <DialogEdit :edit-id="editId" @close="handleCloseEdit" />
-    </el-dialog>
+    </el-dialog> -->
   </div>
 </template>
 
