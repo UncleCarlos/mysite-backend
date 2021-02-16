@@ -8,6 +8,7 @@ import Ripple from 'primevue/ripple'
 // import 'primevue/resources/themes/vela-orange/theme.css'
 import 'primevue/resources/primevue.min.css'
 import 'primeicons/primeicons.css'
+
 import PrimeVueComponents from './primevue'
 
 import '@/assets/css/index.css'

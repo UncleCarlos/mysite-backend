@@ -24,14 +24,46 @@ fs.readFile(
       })
   }
 )
+/**
+ * PrimeVue - Theme - Vela-orange
+ *
+ * @Primary #ffd54f
+ * Hover: #ffcd2e darken 10%
+ * Active: #ffc50c darken 20%
+ * Focus： #ffe284 lighten 16%
+ *
+ * @Secondary #78909C
+ * Hover: #69838f darken 10%
+ * Active: #5d747f darken 20%
+ * Focus: #a1b1ba lighten 26% #A1B2BA
+ *
+ * 有背景色的文字色 #121212
+ */
 const updateValues = [
   // 块级背景
-  { from: /#1f2d40/gi, to: 'var(--bg-30)' },
+  { from: /#1f2d40/gi, to: 'var(--dark-30)' },
   // 边框
-  { from: /#304562/gi, to: 'var(--border-10)' },
+  { from: /#304562/gi, to: 'var(--gray-30)' },
+  // primary
+  { from: /#ffd54f/gi, to: 'var(--primary)' },
+  { from: /#ffcd2e/gi, to: 'var(--primary-hover)' },
+  { from: /#ffc50c/gi, to: 'var(--primary-active)' },
+  { from: /#ffe284/gi, to: 'var(--primary-focus)' },
+  // secondary
   { from: /#78909C/gi, to: 'var(--secondary)' },
+  { from: /#69838f/gi, to: 'var(--secondary-hover)' },
+  { from: /#5d747f/gi, to: 'var(--secondary-active)' },
+  { from: /#a1b1ba/gi, to: 'var(--secondary-focus)' },
+  // 其他颜色
+  { from: /#121212/gi, to: 'var(--dark-70)' },
+  { from: /#ffffff/gi, to: 'var(--gray-30)' },
+  { from: /#212529/gi, to: 'var(--dark-40)' },
+  { from: /rgba(255, 213, 79, 0.16)/gi, to: 'var(--dark-30)' },
+  
 ]
 const updatePropValue = [
+  { prop: 'color', from: 'rgba(255, 255, 255, 0.87)', to: 'var(--gray-130)' },
+  { prop: 'color', from: 'rgba(255, 255, 255, 0.6)', to: 'var(--gray-150)' },
   { prop: 'borderRadius', from: '3px', to: '.375rem' },
   { prop: 'borderBottomRightRadius', from: '3px', to: '.375rem' },
   { prop: 'borderBottomLeftRadius', from: '3px', to: '.375rem' },
@@ -43,11 +75,12 @@ const removeProps = [
   { class: '.p-card .p-card-subtitle', props: ['fontWeight'] },
   { class: '.p-breadcrumb', props: ['background', 'border', 'borderRadius'] },
   { class: '.p-toolbar', props: ['background', 'border', 'borderRadius'] },
-  // { class: '.p-panelmenu .p-panelmenu-header > a', props: ['fontWeight', 'background'] },
+  { class: '.p-breadcrumb ul li .p-menuitem-link:focus', props: ['boxShadow'] },
 ]
 const createOrUpdateProps = [
-  { class: '.p-card .p-card-subtitle', props: { color: 'var(--text-130)' } },
+  { class: '.p-breadcrumb', props: { padding: '0 1rem' } },
   { class: '.p-avatar', props: { overflow: 'hidden' } },
+  { class: '.p-inputtext', props: { border: '1px solid var(--dark-40)' } },
 ]
 
 function replaceContent(obj) {

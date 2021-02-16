@@ -1,5 +1,25 @@
 @import './theme.css';
 @import './app-navmenu.css';
+@import './table.css';
+
+.app-header {
+  & .p-toolbar .p-toolbar-group-right .p-button {
+    &:focus {
+      box-shadow: none;
+    }
+    & .p-button-icon {
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+  }
+}
+
+.p-button {
+  padding: 0.25rem 0.75rem;
+}
+.p-dropdown-label {
+  align-self: center;
+}
 
 .zoom-in {
   @apply transition duration-300 ease-in-out transform cursor-pointer;

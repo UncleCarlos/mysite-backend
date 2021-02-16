@@ -1,5 +1,22 @@
 <template>
-  <div>Source
+  <div>
+    Source
+    <PDataTable
+      :lazy="true"
+      :value="items"
+      :totalRecords="metaData.total"
+      :loading="isLoading"
+      @page="onPage($event)"
+      @sort="onSort($event)"
+      :paginator="true"
+      :rows="metaData.size"
+      paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
+      :rowsPerPageOptions="[10, 20, 50]"
+      currentPageReportTemplate="共 {totalRecords} 项 {first} - {last} "
+    >
+      <PColumn field="name" header="名称"></PColumn>
+      <PColumn field="rss" header="RSS"></PColumn>
+    </PDataTable>
     <!-- <el-card shadow="never">
       <template #header>头啊</template>
       <el-table :data="items" :v-loading="isLoading">
@@ -54,7 +71,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, reactive, ref } from 'vue'
 import { useAxios } from '@/hooks/useAxios'
-import { ISource } from '@/types/interface'
+import { IQueryOptions, ISource } from '@/types/interface'
 
 import DialogEdit from './SourceEdit.vue'
 
@@ -66,7 +83,15 @@ export default defineComponent({
     const isLoading = ref(true)
     const items = reactive<ISource[]>([])
 
-    const fetchFeed = async () => {
+    const queryOptions = ref<IQueryOptions>({})
+    const metaData = ref({
+      total: 0,
+      pageCount: 0,
+      page: queryOptions.value.page,
+      size: queryOptions.value.size,
+    })
+
+    const fetchSource = async () => {
       isLoading.value = true
       const { error, data, finished } = await useAxios('sources')
       // const dataItems = data.value.data
@@ -77,7 +102,7 @@ export default defineComponent({
       }
     }
     onMounted(() => {
-      fetchFeed()
+      fetchSource()
     })
 
     const editId = ref('')
@@ -91,6 +116,7 @@ export default defineComponent({
     return {
       isLoading,
       items,
+      metaData,
       dialogEditVisiable,
       handleEdit,
       editId,

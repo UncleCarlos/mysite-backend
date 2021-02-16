@@ -2,6 +2,7 @@ import { createLogger, createStore } from 'vuex'
 
 const store = createStore({
   state: {
+    zoomLevel: 3,
     dialogNotifyDetailVisiable: false,
     dialogNotifyDetailContent: null,
   },
@@ -13,6 +14,9 @@ const store = createStore({
     },
     updateDialogNotifyDetailContent(state, value) {
       state.dialogNotifyDetailContent = value
+    },
+    updateZoomLevel(state, value) {
+      state.zoomLevel = value
     },
   },
   modules: {},

@@ -1,5 +1,23 @@
 <template>
-  <div>Feed
+  <div>
+    Feed
+    <PDataTable
+      class="yoho-table"
+      :lazy="true"
+      :value="feedItems"
+      :totalRecords="metaData.total"
+      :loading="isLoading"
+      @page="onPage($event)"
+      @sort="onSort($event)"
+      :paginator="true"
+      :rows="metaData.size"
+      paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
+      :rowsPerPageOptions="[10, 20, 50]"
+      currentPageReportTemplate="共 {totalRecords} 项 {first} - {last} "
+    >
+      <PColumn field="title" header="Feed"></PColumn>
+      <PColumn field="date" header="时间"></PColumn>
+    </PDataTable>
     <!-- <el-card>
       <template #header>头啊</template>
       <el-table :data="feedItems" :v-loading="isLoading" row-key="id" :default-sort="metaData.sort">
@@ -102,9 +120,10 @@ export default defineComponent({
         notifyError(error.value)
       }
     }
-    const handleSizeChange = (size: number) => {
+    const onPage = (e: any) => {
+      console.log(e)
       queryOptions.value.page = undefined
-      queryOptions.value.size = size
+      queryOptions.value.size = e.size
     }
     const handleCurrentChange = (page: number) => {
       queryOptions.value.page = page
@@ -116,7 +135,7 @@ export default defineComponent({
       isLoading,
       feedItems,
       metaData,
-      handleSizeChange,
+      onPage,
       handleCurrentChange,
     }
   },
