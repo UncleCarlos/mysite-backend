@@ -5,6 +5,6 @@ module.exports = {
     // 'postcss-nested': {},
     // autoprefixer: {},
     'postcss-preset-env': { stage: 1 },
-    'postcss-color-mod-function': {}
+    'postcss-color-mod-function': {},
   },
 }

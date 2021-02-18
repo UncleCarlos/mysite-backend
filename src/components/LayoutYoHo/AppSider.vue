@@ -1,8 +1,10 @@
 <template>
   <aside class="sticky top-0 w-56 h-screen py-5 pr-5">
-    <div class="flex items-center h-16 mb-8 text-center border-b max-h-16 border-theme-dark-30">
+    <div
+      class="flex items-center justify-center h-16 pr-2 mb-8 border-b max-h-16 border-theme-dark-30"
+    >
       <img src="/images/logo.png" alt="logo" class="w-8 h-8" />
-      <span class="ml-2 text-theme-gray-130">卡叔实验室</span>
+      <span class="ml-2 text-theme-gray-150">卡叔实验室</span>
     </div>
     <PMenu class="app-navmenu" :model="menuItems" />
   </aside>
@@ -27,7 +29,9 @@ export default defineComponent({
           to: e.path,
           icon: e.meta?.icon,
           class: computed(() =>
-            currentRoute.value.matched.find((m) => m.path === e.path) ? 'is-actived' : ''
+            currentRoute.value.matched.find((m) => m.path === e.path)
+              ? 'is-actived intro-x'
+              : 'intro-x'
           ),
         })
       })

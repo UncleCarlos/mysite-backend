@@ -1,10 +1,11 @@
 @import 'tailwindcss/base';
 @import './base.css';
+@import './intro.css';
 
 @import 'tailwindcss/components';
-@import './yoho/index.css';
-@import './components.css';
-@import 'nprogress/nprogress.css';
+@import './nprogress.css';
 @import 'vue-toastification/dist/index.css';
+@import './components.css';
+@import './yoho/index.css';
 
 @import 'tailwindcss/utilities';

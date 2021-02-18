@@ -9,6 +9,7 @@ declare module 'vue-router' {
 }
 
 const LayoutYoHo = () => import('@/components/LayoutYoHo/LayoutYoHo.vue')
+const DefaultLayout = () => import('@/components/DefaultLayout.vue')
 
 const Dashboard = () => import('@/views/Dashboard.vue')
 const FeedList = () => import('@/views/Feed/FeedList.vue')

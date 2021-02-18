@@ -13,7 +13,11 @@ import ScrollTop from 'primevue/scrolltop'
 import Toolbar from 'primevue/toolbar'
 import ColorPicker from 'primevue/colorpicker'
 import InputNumber from 'primevue/inputnumber'
+import Calendar from 'primevue/calendar'
+import Message from 'primevue/message'
 export default {
+  Message,
+  Calendar,
   InputNumber,
   ColorPicker,
   Avatar,

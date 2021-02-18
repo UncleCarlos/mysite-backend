@@ -1,5 +1,5 @@
 <template>
-  <header class="app-header">
+  <header class="px-4 mb-4 app-header">
     <PToolbar class="h-16 px-0 border-b max-h-16 border-theme-dark-30">
       <template #left>
         <PBreadcrumb class="text-sm" :home="breadcrumbHome" :model="breadcrumbItems" />
@@ -10,18 +10,23 @@
           <PButton
             @click="changeZoomLevel(false)"
             icon="pi pi-minus"
-            class="p-button-text p-button-secondary p-button-rounded"
+            class="p-button-text p-button-secondary p-button-rounded -intro-y"
             :disabled="zoomLevel <= 1"
           />
           <PButton
             @click="changeZoomLevel(true)"
             icon="pi pi-plus"
-            class="p-button-text p-button-secondary p-button-rounded"
+            class="p-button-text p-button-secondary p-button-rounded -intro-y"
             :disabled="zoomLevel >= 5"
           />
-          <PButton icon="pi pi-bell" class="p-button-text p-button-secondary p-button-rounded" />
+          <PButton
+            icon="pi pi-bell"
+            class="p-button-text p-button-secondary p-button-rounded -intro-y"
+          />
 
-          <PButton class="p-button-text p-button-icon-only p-button-secondary p-button-rounded">
+          <PButton
+            class="p-button-text p-button-icon-only p-button-secondary p-button-rounded -intro-y"
+          >
             <PAvatar image="/images/carlos-avatar.png" shape="circle" class="zoom-in" />
           </PButton>
         </div>
@@ -45,7 +50,8 @@ export default defineComponent({
       const result: any[] = []
       const routes = route.matched.slice(0, route.matched.length).filter((e) => e.meta.label)
       routes.forEach((e) => {
-        if (!result.find((r) => r.to === e.path)) result.push({ label: e.meta.label, to: e.path })
+        if (!result.find((r) => r.to === e.path))
+          result.push({ label: e.meta.label, to: e.path })
       })
       return result
     })

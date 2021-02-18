@@ -12,6 +12,7 @@ import 'primeicons/primeicons.css'
 import PrimeVueComponents from './primevue'
 
 import '@/assets/css/index.css'
+// import 'windi.css'
 import * as GlobalComponents from '@/components/common'
 
 // import dayjs from 'dayjs'

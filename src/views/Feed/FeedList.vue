@@ -1,6 +1,5 @@
 <template>
-  <div>
-    Feed
+  <div class="px-4">
     <PDataTable
       class="yoho-table"
       :lazy="true"
@@ -13,10 +12,87 @@
       :rows="metaData.size"
       paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
       :rowsPerPageOptions="[10, 20, 50]"
-      currentPageReportTemplate="共 {totalRecords} 项 {first} - {last} "
+      currentPageReportTemplate="{currentPage}/{totalPages} 共 {totalRecords} 项"
+      :autoLayout="true"
+      v-model:selection="selectedItems"
+      removable-sort
+      :rowClass="() => 'intro-y'"
+      dataKey="id"
     >
-      <PColumn field="title" header="Feed"></PColumn>
-      <PColumn field="date" header="时间"></PColumn>
+      <template #header>
+        <PToolbar class="p-0">
+          <template #left>
+            <div class="flex space-x-2">
+              <PInputText type="text" placeholder="搜索" />
+              <PButton label="批量操作" :disabled="!selectedItems || !selectedItems.length" />
+              <PButton type="button" icon="pi pi-ellipsis-h" class="p-button-secondary" />
+            </div>
+          </template>
+          <template #right>
+            <PPaginator
+              :rows="metaData.size"
+              :totalRecords="metaData.total"
+              currentPageReportTemplate="{currentPage}/{totalPages} 共 {totalRecords} 项"
+              template="CurrentPageReport FirstPageLink PrevPageLink NextPageLink LastPageLink RowsPerPageDropdown"
+              :rowsPerPageOptions="[10, 20, 30]"
+              @page="onPage($event)"
+              class="p-0"
+            >
+            </PPaginator>
+          </template>
+        </PToolbar>
+      </template>
+      <PColumn selectionMode="multiple" :exportable="false"></PColumn>
+      <PColumn
+        field="title"
+        header="标题"
+        filterField="title"
+        filterMatchMode="contains"
+        bodyClass="text-theme-gray-150"
+      >
+        <template #body="slotProps">
+          <span>{{ slotProps.data.title }}</span>
+        </template>
+      </PColumn>
+      <PColumn
+        field="source"
+        header="来源"
+        bodyClass="text-theme-gray-150 text-center"
+        headerClass="text-center"
+      >
+        <template #body="slotProps">
+          {{
+            slotProps.data.source.subName
+              ? `${slotProps.data.source.subName}@${slotProps.data.source.name}`
+              : slotProps.data.source.name
+          }}
+        </template>
+      </PColumn>
+      <PColumn
+        field="pubDate"
+        header="时间"
+        bodyClass="text-theme-gray-150 text-center"
+        headerClass="text-center"
+        sortable
+      >
+        <template #body="slotProps">
+          <div class="text-xs">{{ formatRelativeIn3Days(slotProps.data.pubDate) }}</div>
+        </template>
+      </PColumn>
+      <PColumn
+        :exportable="false"
+        header="操作"
+        headerClass="text-center w-32"
+        bodyClass="column-actions text-center"
+      >
+        <template #body="slotProps">
+          <PButton icon="pi pi-pencil" class="p-button-text p-button-rounded p-button-outlined" />
+          <PButton
+            icon="pi pi-trash"
+            class="p-button-text p-button-rounded p-button-danger p-button-outlined"
+          />
+        </template>
+      </PColumn>
     </PDataTable>
     <!-- <el-card>
       <template #header>头啊</template>
@@ -81,8 +157,8 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, reactive, ref, watch } from 'vue'
-import { useAxios, useNotify, useDayjs } from '@/hooks'
-import { IFeed, IQueryOptions } from '@/types/interface'
+import { useService, useDayjs } from '@/hooks'
+import { IFeed, ITableOptions, IQueryOptions } from '@/types/interface'
 
 export default defineComponent({
   name: 'FeedList',
@@ -92,8 +168,8 @@ export default defineComponent({
     const isLoading = ref(true)
     const feedItems = reactive<IFeed[]>([])
     const { formatRelativeIn3Days } = useDayjs()
-    const { notifyError } = useNotify()
-
+    const selectedItems = ref([])
+    const filters = ref({})
     const queryOptions = ref<IQueryOptions>({})
     const metaData = ref({
       total: 0,
@@ -101,42 +177,42 @@ export default defineComponent({
       page: queryOptions.value.page,
       size: queryOptions.value.size,
     })
-    watch(
-      () => queryOptions,
-      () => fetchFeed(),
-      { deep: true }
-    )
-    const fetchFeed = async () => {
+    const { serviceGetFeedList } = useService()
+
+    const getFeedList = async () => {
       isLoading.value = true
-      const { error, data, finished } = await useAxios('feeders', { params: queryOptions.value })
-      if (!error.value) {
-        isLoading.value = !finished.value
-        data.value.data.forEach((e: IFeed) => {
-          e.date = formatRelativeIn3Days(e.pubDate)
-        })
-        feedItems.splice(0, feedItems.length, ...data.value.data)
-        metaData.value = data.value.meta
-      } else {
-        notifyError(error.value)
+      const { error, data } = await serviceGetFeedList(queryOptions.value)
+      if (!error) {
+        const { data: items, meta } = data.value
+        feedItems.splice(0, feedItems.length, ...items)
+        metaData.value = meta
+        isLoading.value = false
       }
     }
-    const onPage = (e: any) => {
-      console.log(e)
-      queryOptions.value.page = undefined
-      queryOptions.value.size = e.size
+    watch(queryOptions.value, () => getFeedList())
+
+    const onPage = (e: ITableOptions) => {
+      queryOptions.value.page = e.page
+      queryOptions.value.size = e.rows
     }
-    const handleCurrentChange = (page: number) => {
-      queryOptions.value.page = page
+    const onSort = (e: ITableOptions) => {
+      queryOptions.value.sort = e.sortField || undefined
+      queryOptions.value.order = e.sortOrder || undefined
     }
+
     onMounted(() => {
-      fetchFeed()
+      getFeedList()
     })
+
     return {
       isLoading,
       feedItems,
+      selectedItems,
+      filters,
       metaData,
       onPage,
-      handleCurrentChange,
+      onSort,
+      formatRelativeIn3Days,
     }
   },
 })

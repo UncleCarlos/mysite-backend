@@ -1,8 +1,8 @@
 <template>
-  <div class="text-sm">
-    <h1 class="mb-2 font-bold">{{ title }}</h1>
-    <span class="text-xs">
-      <pre>{{ detail }}</pre>
+  <div class="font-sans text-sm">
+    <h1 v-if="title" :class="{ 'mb-2 font-bold': message }">{{ title }}</h1>
+    <span v-if="message" class="text-xs">
+      <pre>{{ message }}</pre>
     </span>
   </div>
 </template>
@@ -16,20 +16,15 @@ export default defineComponent({
   components: {},
   props: {
     title: String,
-    detail: String,
+    message: String,
   },
-  emits: ['showDetail'],
-  setup(props, { emit }) {
+  setup(props) {
     const title = computed(() => props.title)
-    const detail = computed(() => props.detail)
+    const detail = computed(() => props.message)
 
-    const handleClickDetail = () => {
-      emit('showDetail')
-    }
     return {
       title,
       detail,
-      handleClickDetail,
     }
   },
 })

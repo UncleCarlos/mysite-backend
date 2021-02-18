@@ -15,26 +15,26 @@
           <div class="p-inputgroup">
             <span class="p-float-label">
               <PInputNumber v-model="transformPercentage" showButtons />
-              <label>变色百分比</label>
+              <label>差值</label>
             </span>
           </div>
 
-          <div class="flex flex-row">
+          <div class="flex flex-row space-x-2 space-y-2">
             <PColorPicker v-model="colorHexValue" :inline="true" @click="changePicker" />
             <div>
               <pre>{{ colorResult }}</pre>
             </div>
-          </div>
-          <div class="flex mt-4">
-            <div
-              class="w-20 h-20 text-center"
-              :class="colorIsDark ? 'text-theme-gray-130' : 'text-theme-dark-10'"
-              v-for="(value, key, index) in colorPreview"
-              :key="index"
-              :style="{ backgroundColor: value }"
-            >
-              {{ key }} <br />
-              {{ value }}
+            <div class="flex flex-wrap">
+              <div
+                class="flex flex-col items-center justify-center w-20 h-20 text-sm"
+                :class="colorIsDark ? 'text-theme-gray-130' : 'text-theme-dark-10'"
+                v-for="(value, key, index) in colorPreview"
+                :key="index"
+                :style="{ backgroundColor: value }"
+              >
+                <span>{{ key }}</span>
+                <span>{{ value }}</span>
+              </div>
             </div>
           </div>
         </div>

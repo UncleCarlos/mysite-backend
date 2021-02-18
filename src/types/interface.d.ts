@@ -2,7 +2,7 @@ export interface IFeed {
   id: string
   title: string
   link: string
-  pubDate: Date
+  pubDate: string | Date | undefined
   description: string
   sourceId: string
   thumbnail: string
@@ -30,4 +30,18 @@ export interface IAccount {
 export interface IQueryOptions {
   page?: number
   size?: number
+  sort?: string
+  order?: number
+}
+
+export interface ITableOptions {
+  filterMatchModes: any | undefined
+  filters: any | null
+  first: number
+  multiSortMeta: any
+  page: number
+  pageCount: number
+  rows: number
+  sortField: string | null
+  sortOrder: number | null
 }

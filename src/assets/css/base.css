@@ -17,7 +17,7 @@
   --dark-20: #293145;
   --dark-30: #313a55;
   --dark-40: #1e2533;
-  /* --dark-50: #3f4865; */
+  --dark-50: #3f4865;
   --dark-70: #181f29;
 
   --border-10: #313a55;
@@ -26,16 +26,23 @@
   --primary-hover: color-mod(var(--primary) shade(10%));
   --primary-active: color-mod(var(--primary) shade(20%));
   --primary-focus: color-mod(var(--primary) tint(26%));
+  --primary-bg-hover: color-mod(var(--primary) a(10%));
+  --primary-bg-active: color-mod(var(--primary) a(20%));
+
 
   --secondary: #3f4865;
   --secondary-hover: color-mod(var(--secondary) shade(10%));
   --secondary-active: color-mod(var(--secondary) shade(20%));
   --secondary-focus: color-mod(var(--secondary) tint(26%));
+  --secondary-bg-hover: color-mod(var(--secondary) a(70%));
+  --secondary-bg-active: color-mod(var(--secondary) a(40%));
+
 
   --gray-130: #e2e8f0;
+  --gray-140: #cbd5e0;
   --gray-150: #a0aec0;
   --gray-160: #718096;
-  /* --gray-170: #4a5568; */
+  --gray-170: #4a5568;
   --gray-190: #1a202c;
 
   --zoom-level: 16px;
@@ -43,3 +50,4 @@
 html {
   font-size: var(--zoom-level);
 }
+

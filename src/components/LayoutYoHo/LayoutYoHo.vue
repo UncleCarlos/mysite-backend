@@ -1,13 +1,15 @@
 <template>
-  <div class="px-8 bg-theme-dark-10 text-theme-gray-130">
-    <div class="flex flex-grow">
-      <AppSider />
-      <section class="flex-1 min-w-0 px-5 pb-10 my-5 rounded-3xl bg-theme-dark-20">
-        <AppHeader />
-        <CustomRouterView />
-      </section>
+  <CScrollBar>
+    <div class="w-screen h-screen max-h-screen min-h-screen">
+      <div class="flex flex-grow h-auto px-6 bg-theme-dark-10 text-theme-gray-130">
+        <AppSider class="intro-x" />
+        <section class="flex-1 min-w-0 pb-10 my-5 rounded-3xl bg-theme-dark-20 intro-y">
+          <AppHeader />
+          <CustomRouterView />
+        </section>
+      </div>
     </div>
-  </div>
+  </CScrollBar>
 </template>
 
 <script lang="ts">
