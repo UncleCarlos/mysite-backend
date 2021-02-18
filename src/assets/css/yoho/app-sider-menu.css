@@ -1,0 +1,67 @@
+.app-sider-menu {
+  @apply w-56 select-none;
+
+  & .app-sider-menu-item {
+    @apply flex relative;
+
+    &:hover {
+      @apply cursor-pointer;
+
+      &:not(.is-actived) .app-sider-menu-link {
+        @apply bg-theme-dark-40;
+      }
+    }
+
+    & .app-sider-menu-link {
+      @apply relative flex w-full pl-5 items-center h-12 mb-1 rounded-tl-full rounded-bl-full;
+
+      & .app-sider-menu-icon {
+        @apply mr-3 text-theme-gray-150;
+      }
+
+      & .app-sider-menu-text {
+        @apply text-sm text-theme-gray-150;
+
+        & :before {
+          @apply h-full absolute top-0 left-0 w-56 bg-theme-dark-20 rounded-tl-full rounded-bl-full;
+          content: '';
+          z-index: -1;
+          /* margin-right: -1.25rem; */
+        }
+      }
+    }
+
+    &.is-actived {
+      position: relative;
+      &:before {
+        @apply -mt-8;
+      }
+      &:after {
+        @apply mt-12 -rotate-90 transform;
+      }
+
+      &:before,
+      &:after {
+        content: '';
+        @apply w-8 h-8 absolute top-0 right-0 bg-theme-dark-20;
+        mask: url('../../app-navmenu-actived-cornor.svg');
+        z-index: 100;
+      }
+      & .app-sider-menu-link {
+
+      }
+      & .app-sider-menu-icon {
+        @apply text-theme-gray-130;
+      }
+      & .app-sider-menu-text {
+        @apply text-theme-gray-130;
+
+        &:before {
+          @apply h-full absolute top-0 right-0 w-full bg-theme-dark-20  rounded-tl-full rounded-bl-full;
+          content: '';
+          z-index: -1;
+        }
+      }
+    }
+  }
+}
