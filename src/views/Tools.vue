@@ -1,5 +1,13 @@
 <template>
   <div>
+    <div class="flex space-x-2">
+      <CButton type="primary" class="rounded-md">123</CButton>
+      <CButton type="secondary" class="rounded-md">234</CButton>
+      <CButton type="primary" borderless class="rounded-md">123</CButton      >
+      <CButton type="secondary" borderless class="rounded-md">234</CButton>
+      <CButton type="primary" rounded class="rounded-md">123</CButton>
+      <CButton type="secondary" class="rounded-md">234</CButton>
+    </div>
     <PCard class="mt-8">
       <template #header> </template>
       <template #title> 颜色计算器 </template>
@@ -37,6 +45,17 @@
               </div>
             </div>
           </div>
+          <div class="flex flex-row flex-wrap">
+            <div
+              class="flex flex-col items-center justify-center w-20 h-20 text-sm"
+              v-for="(value, key, index) in colorTest"
+              :key="index"
+              :style="{ backgroundColor: value }"
+            >
+              <span>{{ key }}</span>
+              <span>{{ value }}</span>
+            </div>
+          </div>
         </div>
       </template>
       <template #footer>
@@ -48,7 +67,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch } from 'vue'
+import { defineComponent, reactive, Ref, ref, watch } from 'vue'
 import Color from 'color'
 
 export default defineComponent({
@@ -101,6 +120,24 @@ export default defineComponent({
       }
     }
     changePicker()
+
+    const colorTest: any[] = reactive([])
+    let arrD = [],
+      arrL = []
+    let c = '#3f4865'
+    let cV = Color(c)
+    for (let i = 0; i <= 10; i++) {
+      let abc = cV.darken(0.1).hex()
+      arrD.push(abc)
+      cV = Color(abc)
+    }
+    cV = Color(c)
+    for (let i = 0; i <= 10; i++) {
+      let abc = cV.lighten(0.1).hex()
+      arrL.push(abc)
+      cV = Color(abc)
+    }
+    colorTest.splice(0, colorTest.length, ...arrL.reverse().concat(Color(c).hex()).concat(arrD))
     return {
       transformColor,
       colorPreview,
@@ -110,6 +147,7 @@ export default defineComponent({
       colorIsDark,
       transformPercentage,
       changePicker,
+      colorTest,
     }
   },
 })

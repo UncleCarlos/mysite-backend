@@ -4,3 +4,4 @@ dist
 dist-ssr
 *.local
 ep-variables.scss
+yarn-error.log

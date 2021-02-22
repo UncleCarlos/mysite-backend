@@ -10,7 +10,6 @@ declare module 'vue-router' {
 
 const LayoutYoHo = () => import('@/components/LayoutYoHo/LayoutYoHo.vue')
 const DefaultLayout = () => import('@/components/DefaultLayout.vue')
-
 const Dashboard = () => import('@/views/Dashboard.vue')
 const FeedList = () => import('@/views/Feed/FeedList.vue')
 const SourceList = () => import('@/views/Source/SourceList.vue')
@@ -27,18 +26,18 @@ const router = createRouter({
       redirect: '/dashboard',
       component: LayoutYoHo,
       children: [
-        { path: '/dashboard', component: Dashboard, meta: { label: '仪表盘' } },
+        { path: '/dashboard', component: Dashboard, meta: { label: '总览', icon:'dashboard-one' } },
         {
           path: '/feed',
           name: 'Feed',
           component: FeedList,
-          meta: { label: 'Feed', group: '阅读' },
+          meta: { label: '饲料', group: '阅读', icon: 'newspaper-folding' },
         },
         {
           path: '/source',
           name: 'Source',
           component: SourceList,
-          meta: { label: '源', group: '阅读' },
+          meta: { label: 'RSS源', group: '阅读', icon: 'world' },
           children: [
             {
               path: 'edit',
@@ -51,13 +50,13 @@ const router = createRouter({
           path: '/collector',
           name: 'Collector',
           component: Collector,
-          meta: { label: '采集器', group: 'RBAC' },
+          meta: { label: '采集器', group: 'RBAC', icon: 'robot-one' },
         },
         {
           path: '/tools',
           name: 'Tools',
           component: Tools,
-          meta: { label: '工具', keepAlive: true },
+          meta: { label: '工具', keepAlive: true, icon: 'tool' },
         },
       ],
     },

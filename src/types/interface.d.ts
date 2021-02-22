@@ -45,3 +45,14 @@ export interface ITableOptions {
   sortField: string | null
   sortOrder: number | null
 }
+
+export interface ICollectorStats {
+  sources: ISource[]
+  meta: {
+    lastDate?: string
+    lastFeedCount?: number
+    lastConsuming?: number
+    nextDate?: string
+    nextSource?: ISource
+  }
+}

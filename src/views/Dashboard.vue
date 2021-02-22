@@ -1,5 +1,5 @@
 <template>
-  <div>Dashboard</div>
+  <div>Dashboard <CIconPark icon="home" /></div>
 </template>
 
 <script lang="ts">
@@ -7,7 +7,7 @@ import { defineComponent, reactive, toRefs } from 'vue'
 
 export default defineComponent({
   name: 'Dashboard',
-  components: {},
+  components: { },
   props: {},
   setup(props) {
     const data = reactive({})

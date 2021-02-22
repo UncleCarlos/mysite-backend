@@ -8,8 +8,10 @@ import { ref } from 'vue'
 
 const versionPrefix = ''
 const api = {
-  fetchFeedList: 'feeders',
-  fetchFeed: 'feeders/',
+  getFeedList: 'feeders',
+  getFeed: 'feeders/',
+  getSourceList: 'sources',
+  getCollector: 'collector',
 }
 
 const axiosConfig = { baseURL: Config.API_BASE_URL, timeout: Config.API_TIMEOUT }
@@ -18,10 +20,12 @@ export function useService() {
   const { notifyError, notifyWarning, dismissNotify } = useNotify()
 
   /** 获取饲料列表 */
-  const serviceGetFeedList = (params: IQueryOptions) =>
-    exec({ url: api.fetchFeedList, method: 'get', params })
+  const serviceGetFeedList = (params: IQueryOptions) => exec({ url: api.getFeedList, params })
   /** 获取饲料详情 */
-  const serviceGetFeed = (id: string) => exec({ url: `${api.fetchFeed}${id}` })
+  const serviceGetFeed = (id: string) => exec({ url: `${api.getFeed}${id}` })
+  const serviceGetSourceList = (params: IQueryOptions) => exec({ url: api.getSourceList, params })
+  /** 获取采集器状态 */
+  const serviceGetCollectorStatus = () => exec({ url: api.getCollector })
 
   /** 执行服务 */
   const exec = async (options: AxiosRequestConfig) => {
@@ -56,9 +60,10 @@ export function useService() {
     clearTimeout(startAt)
     return { data }
   }
-
   return {
     serviceGetFeedList,
     serviceGetFeed,
+    serviceGetSourceList,
+    serviceGetCollectorStatus,
   }
 }

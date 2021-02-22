@@ -15,7 +15,12 @@ import ColorPicker from 'primevue/colorpicker'
 import InputNumber from 'primevue/inputnumber'
 import Calendar from 'primevue/calendar'
 import Message from 'primevue/message'
+import Badge from 'primevue/badge'
+import Dialog from 'primevue/dialog'
+
 export default {
+  Dialog,
+  Badge,
   Message,
   Calendar,
   InputNumber,

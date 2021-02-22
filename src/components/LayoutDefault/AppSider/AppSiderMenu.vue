@@ -8,7 +8,7 @@
       :to="item.path"
       @click.passive="handleClickMenu"
     >
-      <CIconPark :icon="item.icon" class="w-5 h-5" />
+      <!-- <CIconPark :icon="item.icon" class="w-5 h-5" /> -->
       <span class="mx-4">{{ item.meta?.label || '' }}</span>
     </router-link>
   </nav>
@@ -34,9 +34,9 @@ export default defineComponent({
     const inactiveClass = ref(
       'border-transparent text-gray-500 hover:bg-yellow-300 hover:bg-opacity-25 hover:text-gray-100'
     )
-    const siderVisiable = useSider().visiable
+    const siderVisible = useSider().visible
     const handleClickMenu = () => {
-      if (siderVisiable) siderVisiable.value = false
+      if (siderVisible) siderVisible.value = false
     }
     return {
       menuItems,

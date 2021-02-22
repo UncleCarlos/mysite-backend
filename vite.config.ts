@@ -10,6 +10,6 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    include: ['dayjs/locale/zh-cn', 'dayjs/plugin/relativeTime'],
+    include: ['dayjs/locale/zh-cn', 'dayjs/plugin/relativeTime', '@icon-park/vue-next/es/all'],
   },
 })

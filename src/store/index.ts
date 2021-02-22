@@ -3,14 +3,14 @@ import { createLogger, createStore } from 'vuex'
 const store = createStore({
   state: {
     zoomLevel: 3,
-    dialogNotifyDetailVisiable: false,
+    dialogNotifyDetailVisible: false,
     dialogNotifyDetailContent: null,
   },
   getters: {},
   actions: {},
   mutations: {
-    toggleDialogNotifyDetailVisiable(state, value) {
-      state.dialogNotifyDetailVisiable = value
+    toggleDialogNotifyDetailVisible(state, value) {
+      state.dialogNotifyDetailVisible = value
     },
     updateDialogNotifyDetailContent(state, value) {
       state.dialogNotifyDetailContent = value

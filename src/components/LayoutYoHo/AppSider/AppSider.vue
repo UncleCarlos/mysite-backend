@@ -6,17 +6,18 @@
       <img src="/images/logo.png" alt="logo" class="w-8 h-8" />
       <span class="ml-2 text-theme-gray-150">卡叔实验室</span>
     </div>
-    <PMenu class="app-navmenu" :model="menuItems" />
+    <AppSiderMenu :model="menuItems" />
   </aside>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, reactive, watchEffect } from 'vue'
 import { useRouter } from 'vue-router'
+import AppSiderMenu from './AppSiderMenu.vue'
 
 export default defineComponent({
   name: 'AppSider',
-  components: {},
+  components: { AppSiderMenu },
   props: {},
   setup() {
     const { currentRoute, options } = useRouter()
@@ -29,9 +30,7 @@ export default defineComponent({
           to: e.path,
           icon: e.meta?.icon,
           class: computed(() =>
-            currentRoute.value.matched.find((m) => m.path === e.path)
-              ? 'is-actived intro-x'
-              : 'intro-x'
+            currentRoute.value.matched.find((m) => m.path === e.path) ? 'is-actived' : ''
           ),
         })
       })

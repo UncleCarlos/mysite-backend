@@ -1,2 +1,3 @@
-export { default as CIconPark } from './CIconPark'
-export { default as CScrollBar } from './CScrollBar'
+import CImage from './CImage'
+
+export default { CImage }

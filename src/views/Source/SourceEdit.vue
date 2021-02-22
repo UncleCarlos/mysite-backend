@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div>123
     <!-- <el-form
       :model="formItem"
       label-suffix=":"
@@ -22,7 +22,6 @@
 
 <script lang="ts">
 import { computed, defineComponent, onMounted, ref } from 'vue'
-import { useAxios } from '@/hooks/useAxios'
 
 export default defineComponent({
   name: 'SourceEdit',
@@ -39,15 +38,15 @@ export default defineComponent({
     const editId = computed(() => props.editId)
     const formItem = ref({})
 
-    const fetchItem = async (id: string) => {
-      isLoading.value = true
-      const { error, data, finished } = await useAxios(`sources/${id}`)
-      if (!error.value) {
-        isLoading.value = !finished.value
-        formItem.value = data.value.data
-      }
-    }
-    onMounted(() => fetchItem(editId.value))
+    // const fetchItem = async (id: string) => {
+    //   isLoading.value = true
+    //   const { error, data, finished } = await useAxios(`sources/${id}`)
+    //   if (!error.value) {
+    //     isLoading.value = !finished.value
+    //     formItem.value = data.value.data
+    //   }
+    // }
+    // onMounted(() => fetchItem(editId.value))
 
     const handleClose = () => {
       emit('close')

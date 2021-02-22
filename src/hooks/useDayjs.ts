@@ -22,5 +22,5 @@ export const useDayjs = () => {
     if (!date) return
     return dayjs(date).format(pattern || 'YYYY年MM月DD日 A HH:mm')
   }
-  return { formatDate, formatRelativeIn3Days }
+  return { dayjs, formatDate, formatRelativeIn3Days }
 }

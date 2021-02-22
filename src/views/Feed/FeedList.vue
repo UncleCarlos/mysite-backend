@@ -1,5 +1,5 @@
 <template>
-  <div class="px-4">
+  <div>
     <PDataTable
       class="yoho-table"
       :lazy="true"
@@ -34,7 +34,7 @@
               :totalRecords="metaData.total"
               currentPageReportTemplate="{currentPage}/{totalPages} 共 {totalRecords} 项"
               template="CurrentPageReport FirstPageLink PrevPageLink NextPageLink LastPageLink RowsPerPageDropdown"
-              :rowsPerPageOptions="[10, 20, 30]"
+              :rowsPerPageOptions="[10, 20, 50]"
               @page="onPage($event)"
               class="p-0"
             >
@@ -43,23 +43,18 @@
         </PToolbar>
       </template>
       <PColumn selectionMode="multiple" :exportable="false"></PColumn>
-      <PColumn
-        field="title"
-        header="标题"
-        filterField="title"
-        filterMatchMode="contains"
-        bodyClass="text-theme-gray-150"
-      >
+      <PColumn field="title" header="标题" filterField="title" filterMatchMode="contains">
         <template #body="slotProps">
-          <span>{{ slotProps.data.title }}</span>
+          <span class="line-clamp-1">{{ slotProps.data.title }}</span>
+          <div class="flex flex-row mt-2 space-x-1 text-xs text-theme-gray-160">
+            <span> {{ slotProps.data.id }}</span>
+            <PButton class="p-button-text p-button-secondary p-button-icon-only c-icon-button">
+              <CIconPark icon="copy" />
+            </PButton>
+          </div>
         </template>
       </PColumn>
-      <PColumn
-        field="source"
-        header="来源"
-        bodyClass="text-theme-gray-150 text-center"
-        headerClass="text-center"
-      >
+      <PColumn field="source" header="来源" bodyClass="text-theme-gray-150 whitespace-nowrap">
         <template #body="slotProps">
           {{
             slotProps.data.source.subName
@@ -68,29 +63,15 @@
           }}
         </template>
       </PColumn>
-      <PColumn
-        field="pubDate"
-        header="时间"
-        bodyClass="text-theme-gray-150 text-center"
-        headerClass="text-center"
-        sortable
-      >
+      <PColumn field="pubDate" header="时间" bodyClass="text-theme-gray-150" sortable>
         <template #body="slotProps">
           <div class="text-xs">{{ formatRelativeIn3Days(slotProps.data.pubDate) }}</div>
         </template>
       </PColumn>
-      <PColumn
-        :exportable="false"
-        header="操作"
-        headerClass="text-center w-32"
-        bodyClass="column-actions text-center"
-      >
+      <PColumn :exportable="false" bodyClass="column-actions whitespace-nowrap">
         <template #body="slotProps">
-          <PButton icon="pi pi-pencil" class="p-button-text p-button-rounded p-button-outlined" />
-          <PButton
-            icon="pi pi-trash"
-            class="p-button-text p-button-rounded p-button-danger p-button-outlined"
-          />
+          <PButton icon="pi pi-pencil" class="p-button-text p-button-rounded" />
+          <PButton icon="pi pi-trash" class="p-button-text p-button-rounded p-button-danger" />
         </template>
       </PColumn>
     </PDataTable>
@@ -174,11 +155,11 @@ export default defineComponent({
     const metaData = ref({
       total: 0,
       pageCount: 0,
-      page: queryOptions.value.page,
-      size: queryOptions.value.size,
+      page: queryOptions.value.page || 0,
+      size: queryOptions.value.size || 0,
     })
-    const { serviceGetFeedList } = useService()
 
+    const { serviceGetFeedList } = useService()
     const getFeedList = async () => {
       isLoading.value = true
       const { error, data } = await serviceGetFeedList(queryOptions.value)

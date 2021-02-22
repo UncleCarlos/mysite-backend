@@ -88,7 +88,7 @@ export const useNotify = () => {
   //   //   // listeners: {
   //   //   //   showDetail: () => {
   //   //   //     vueInstance?.ctx.$store.commit('updateDialogNotifyDetailContent', content)
-  //   //   //     vueInstance?.ctx.$store.commit('toggleDialogNotifyDetailVisiable', true)
+  //   //   //     vueInstance?.ctx.$store.commit('toggleDialogNotifyDetailVisible', true)
   //   //   //   },
   //   //   // },
   //   // }

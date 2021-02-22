@@ -1,9 +1,9 @@
 import { ref } from 'vue'
 
-const visiable = ref(false)
+const visible = ref(false)
 
 export function useSider() {
   return {
-    visiable,
+    visible,
   }
 }

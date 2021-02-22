@@ -10,23 +10,18 @@
           <PButton
             @click="changeZoomLevel(false)"
             icon="pi pi-minus"
-            class="p-button-text p-button-secondary p-button-rounded -intro-y"
+            class="p-button-text p-button-secondary p-button-rounded"
             :disabled="zoomLevel <= 1"
           />
           <PButton
             @click="changeZoomLevel(true)"
             icon="pi pi-plus"
-            class="p-button-text p-button-secondary p-button-rounded -intro-y"
+            class="p-button-text p-button-secondary p-button-rounded"
             :disabled="zoomLevel >= 5"
           />
-          <PButton
-            icon="pi pi-bell"
-            class="p-button-text p-button-secondary p-button-rounded -intro-y"
-          />
+          <PButton icon="pi pi-bell" class="p-button-text p-button-secondary p-button-rounded" />
 
-          <PButton
-            class="p-button-text p-button-icon-only p-button-secondary p-button-rounded -intro-y"
-          >
+          <PButton class="p-button-text p-button-icon-only p-button-secondary p-button-rounded">
             <PAvatar image="/images/carlos-avatar.png" shape="circle" class="zoom-in" />
           </PButton>
         </div>
@@ -50,8 +45,7 @@ export default defineComponent({
       const result: any[] = []
       const routes = route.matched.slice(0, route.matched.length).filter((e) => e.meta.label)
       routes.forEach((e) => {
-        if (!result.find((r) => r.to === e.path))
-          result.push({ label: e.meta.label, to: e.path })
+        if (!result.find((r) => r.to === e.path)) result.push({ label: e.meta.label, to: e.path })
       })
       return result
     })

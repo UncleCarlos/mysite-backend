@@ -1,7 +1,7 @@
 <template>
   <nav class="app-sider-menu">
     <ul class="">
-      <template v-for="(item, i) in model" :key="item.label + i">
+      <template v-for="(item, i) in menuItems" :key="item.label + i">
         <li class="app-sider-menu-item" :class="item.class">
           <router-link :to="item.to" class="app-sider-menu-link">
             <span class="app-sider-menu-icon"><CIconPark :icon="item.icon" size="1.25rem" /></span>
@@ -15,11 +15,10 @@
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
-import CIconPark from '@/components/common/CIconPark'
 
 export default defineComponent({
   name: 'AppSiderMenu',
-  components: { CIconPark },
+  components: {},
   props: {
     model: {
       type: Array,
@@ -28,7 +27,9 @@ export default defineComponent({
   },
   setup(props) {
     const menuItems = computed(() => props.model)
-    return {}
+    return {
+      menuItems
+    }
   },
 })
 </script>

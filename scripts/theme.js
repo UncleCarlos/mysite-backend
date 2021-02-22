@@ -52,7 +52,7 @@ const updateValues = [
   // 块级背景
   { from: /#1f2d40/gi, to: 'var(--dark-30)' },
   // 边框
-  { from: /#304562/gi, to: 'var(--gray-30)' },
+  { from: /#304562/gi, to: 'var(--dark-30)' },
   // primary
   { from: /#ffd54f/gi, to: 'var(--primary)' },
   { from: /#ffcd2e/gi, to: 'var(--primary-hover)' },
@@ -88,6 +88,7 @@ const removeProps = [
   { class: '.p-breadcrumb ul li .p-menuitem-link:focus', props: ['boxShadow'] },
   { class: '.p-breadcrumb', props: ['background', 'border', 'borderRadius'] },
   { class: '.p-card .p-card-subtitle', props: ['fontWeight'] },
+  { class: '.p-card .p-card-title', props: ['fontSize', 'fontWeight'] },
   { class: '.p-card', props: ['boxShadow'] },
   { class: '.p-paginator', props: ['background'] },
   { class: '.p-toolbar', props: ['background', 'border', 'borderRadius'] },
@@ -98,8 +99,10 @@ const createOrUpdateProps = [
   { class: '.p-breadcrumb ul li.p-breadcrumb-chevron', props: { color: 'var(--gray-160)' } },
   { class: '.p-breadcrumb', props: { padding: '0 1rem' } },
   { class: '.p-inputtext', props: { border: '1px solid var(--dark-40)' } },
-  { class: '.p-component-overlay', props: { backgroundColor: 'transparent' } },
-  
+  // { class: '.p-component-overlay', props: { backgroundColor: 'transparent' } },
+  { class: '.p-component-overlay', props: { borderRadius: '.375rem' } },
+  { class: '.p-dialog', props: { overflow: 'hidden', background: 'var(--dark-30)' } },
+
   {
     class:
       '.p-button.p-button-secondary.p-button-text, .p-buttonset.p-button-secondary > .p-button.p-button-text, .p-splitbutton.p-button-secondary > .p-button.p-button-text',

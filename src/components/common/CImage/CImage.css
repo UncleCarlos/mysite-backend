@@ -1,0 +1,7 @@
+.c-image {
+  @apply relative inline-block overflow-hidden;
+
+  & .mask {
+    @apply absolute flex top-0 bottom-0 w-full items-center justify-center;
+  }
+}

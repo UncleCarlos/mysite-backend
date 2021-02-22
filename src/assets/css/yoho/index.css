@@ -1,16 +1,16 @@
 @import './theme.css';
-@import './app-navmenu.css';
+@import './app-sider-menu.css';
 @import './table.css';
 
 .p-component {
   font-size: 0.875rem;
 }
 
-.os-theme-light > .os-scrollbar > .os-scrollbar-track > .os-scrollbar-handle {
+.os-host.os-theme-dark > .os-scrollbar > .os-scrollbar-track > .os-scrollbar-handle {
   background: var(--dark-20);
 }
 
-.os-theme-light > .os-scrollbar:hover > .os-scrollbar-track > .os-scrollbar-handle {
+.os-host.os-theme-dark > .os-scrollbar:hover > .os-scrollbar-track > .os-scrollbar-handle {
   background: var(--dark-30);
 }
 
@@ -26,11 +26,10 @@
 
 .app-header {
   & .p-toolbar .p-toolbar-group-right .p-button {
-    color: var(--secondary);
-
-    &:focus {
+    color: var(--gray-170);
+    /* &:focus {
       box-shadow: none;
-    }
+    } */
     /* &:hover {
       color: var(--gray-160);
     } */
@@ -40,7 +39,18 @@
     }
   }
 }
-
+.c-icon-button {
+  &.p-button.p-button-secondary.p-button-text.p-button-icon-only {
+    padding: 0;
+    background: none;
+    width: auto;
+    /* box-shadow: none; */
+    color: var(--gray-160);
+    &:hover {
+      color: var(--gray-140);
+    }
+  }
+}
 .zoom-in {
   @apply transition duration-300 ease-in-out transform cursor-pointer;
   &:hover {
